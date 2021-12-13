@@ -192,6 +192,7 @@ public class RestController implements HttpServerTransport.Dispatcher {
     public void dispatchRequest(RestRequest request, RestChannel channel, ThreadContext threadContext) {
         threadContext.addResponseHeader(ELASTIC_PRODUCT_HTTP_HEADER, ELASTIC_PRODUCT_HTTP_HEADER_VALUE);
         try {
+            //找出所有可能的handlers，然后分发这些请求
             tryAllHandlers(request, channel, threadContext);
         } catch (Exception e) {
             try {
@@ -308,6 +309,13 @@ public class RestController implements HttpServerTransport.Dispatcher {
         channel.sendResponse(BytesRestResponse.createSimpleErrorResponse(channel, NOT_ACCEPTABLE, errorMessage));
     }
 
+    /**
+     * 找出所有可能的handlers，然后分发这些请求
+     * @param request
+     * @param channel
+     * @param threadContext
+     * @throws Exception
+     */
     private void tryAllHandlers(final RestRequest request, final RestChannel channel, final ThreadContext threadContext) throws Exception {
         for (final RestHeaderDefinition restHeader : headersToCopy) {
             final String name = restHeader.getName();

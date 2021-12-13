@@ -64,7 +64,7 @@ public class PreVoteCollector {
     }
 
     /**
-     * Start a new pre-voting round.
+     * 开始一轮新的预选举
      *
      * @param clusterState   the last-accepted cluster state
      * @param broadcastNodes the nodes from whom to request pre-votes
