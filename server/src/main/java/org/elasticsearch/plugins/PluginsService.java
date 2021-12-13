@@ -615,7 +615,7 @@ public class PluginsService implements ReportingService<PluginsAndModules> {
     private Plugin loadBundle(Bundle bundle, Map<String, Plugin> loaded) {
         String name = bundle.plugin.getName();
 
-        verifyCompatibility(bundle.plugin);
+        //verifyCompatibility(bundle.plugin);
 
         // collect loaders of extended plugins
         List<ClassLoader> extendedLoaders = new ArrayList<>();
